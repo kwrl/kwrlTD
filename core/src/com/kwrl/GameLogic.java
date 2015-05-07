@@ -7,7 +7,9 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.kwrl.models.Ball;
 import com.kwrl.models.GameObject;
+import com.kwrl.models.Weapon;
 
 public class GameLogic implements ContactListener {
 	private static GameLogic instance = null;
@@ -22,12 +24,22 @@ public class GameLogic implements ContactListener {
 	}
 	
 	public GameLogic() {
-		this.world = new World(new Vector2(0.0f, -2f), true);
+		this.world = new World(new Vector2(0.0f, -5f), true);
+		this.world.setContactListener(this);
 		this.gameObjects = new Array<GameObject>();
 	}
 
 	@Override
 	public void beginContact(Contact contact) {
+		GameObject a, b;
+		a = (GameObject)contact.getFixtureA().getBody().getUserData();
+		b = (GameObject)contact.getFixtureB().getBody().getUserData();
+		
+		if(a instanceof Weapon.DangerZone && b instanceof Ball) {
+			
+		} else if(b instanceof Weapon.DangerZone && a instanceof Ball) {
+			
+		}
 	}
 
 	@Override
@@ -53,4 +65,5 @@ public class GameLogic implements ContactListener {
 	public Array<GameObject> getGameObjects() {
 		return this.gameObjects;
 	}
+	
 }

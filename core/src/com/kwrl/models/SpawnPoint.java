@@ -11,14 +11,16 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
 import com.kwrl.GameLogic;
+import com.kwrl.models.factories.GameObjectFactory;
 
 public class SpawnPoint extends GameObject {
 
+	protected GameObjectFactory factory;
 	protected float lastSpawn, spawnInterval;
 	protected Timer timer;
 	protected boolean spawning;
 
-	public SpawnPoint(Vector2 position, Vector2 dimensions) {
+	public SpawnPoint(Vector2 position, Vector2 dimensions, GameObjectFactory factory) {
 		super(new Texture("stone.png"));
 		World world = GameLogic.getInstance().getWorld();
 		PolygonShape shape = new PolygonShape();
@@ -40,6 +42,8 @@ public class SpawnPoint extends GameObject {
 		this.body.setUserData(this);
 		fd.shape.dispose();
 		
+		this.factory = factory;
+		
 		startSpawning(5);
 	}
 	
@@ -50,7 +54,7 @@ public class SpawnPoint extends GameObject {
 			@Override
 			public void run() {
 				if(spawning) {
-					new Ball(body.getPosition(), 10f);
+					factory.createInstance(body.getPosition());
 					timer.scheduleTask(this, 5);
 				}
 			}
