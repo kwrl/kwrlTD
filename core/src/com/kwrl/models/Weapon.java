@@ -10,15 +10,18 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Timer;
 import com.kwrl.GameLogic;
 
 public class Weapon extends GameObject {
 	protected DangerZone dangerZone;
 	protected Body rangeSector;
+	protected Timer timer;
 	protected float range, radius;
+	protected boolean firing;
 	
 	public Weapon(Vector2 position, float radius, float range) {
-		super(new Texture("weapon.png"));
+		super(new Texture("dangerzone.png"));
 			World world = GameLogic.getInstance().getWorld();
 		CircleShape circle = new CircleShape();
 		circle.setRadius(radius);
@@ -41,6 +44,24 @@ public class Weapon extends GameObject {
 		fd.shape.dispose();
 		
 		this.dangerZone = new DangerZone(this);
+		this.startFiring(1);
+	}
+	
+	public void startFiring(int interval) {
+		timer = new Timer();
+		firing = true;
+		
+		timer.scheduleTask(new Timer.Task() {
+			@Override
+			public void run() {
+				if(firing) {
+					if(!dangerZone.getTargets().isEmpty()) {
+						dangerZone.getTargets().get(0).takeDamage(20);
+					}
+					timer.scheduleTask(this, 1);
+				}
+			}
+		}, 1);
 	}
 
 	@Override
@@ -81,11 +102,17 @@ public class Weapon extends GameObject {
 		}
 		
 		public void addTarget(Ball ball) {
-			this.targets.add(ball);
+			if(!targets.contains(ball)) {
+				this.targets.add(ball);
+			}
 		}
 		
 		public void removeTarget(Ball ball) {
 			this.targets.remove(ball);
+		}
+		
+		public ArrayList<Ball> getTargets() {
+			return this.targets;
 		}
 	}
 }

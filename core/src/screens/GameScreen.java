@@ -1,5 +1,7 @@
 package screens;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -10,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 import com.kwrl.GameLogic;
 import com.kwrl.KwrlTD;
 import com.kwrl.models.GameObject;
@@ -45,7 +46,7 @@ public class GameScreen implements Screen, InputProcessor {
 	@Override
 	public void render(float delta) {
 		World world = GameLogic.getInstance().getWorld();
-		Array<GameObject> gameObjects = GameLogic.getInstance()
+		ArrayList<GameObject> gameObjects = GameLogic.getInstance()
 				.getGameObjects();
 		float dt = Math.min(delta, 1 / 30f);
 		Gdx.gl.glClearColor(1, 1, 1, 1);
