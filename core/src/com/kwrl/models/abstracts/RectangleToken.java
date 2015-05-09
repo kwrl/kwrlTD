@@ -1,4 +1,4 @@
-package com.kwrl.models;
+package com.kwrl.models.abstracts;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;

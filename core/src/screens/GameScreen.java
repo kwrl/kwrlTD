@@ -15,8 +15,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.kwrl.GameLogic;
 import com.kwrl.KwrlTD;
 import com.kwrl.models.SpawnPoint;
-import com.kwrl.models.Token;
 import com.kwrl.models.Weapon;
+import com.kwrl.models.abstracts.Token;
 import com.kwrl.models.factories.BallFactory;
 import com.kwrl.models.factories.GroundFactory;
 
@@ -52,15 +52,16 @@ public class GameScreen implements Screen, InputProcessor {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+		/*
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 		for (Token obj : gameObjects) {
 			obj.draw(sb, obj.getBody());
 		}
 		sb.end();
+		*/
 
-		// debugRenderer.render(world, camera.combined);
+		debugRenderer.render(world, camera.combined);
 		world.step(dt, 6, 6);
 	}
 

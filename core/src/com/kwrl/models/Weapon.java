@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Timer;
+import com.kwrl.models.abstracts.CircleToken;
 
 public class Weapon extends CircleToken {
 	protected DangerZone dangerZone;

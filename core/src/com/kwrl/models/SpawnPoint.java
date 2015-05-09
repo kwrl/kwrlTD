@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Timer;
+import com.kwrl.models.abstracts.RectangleToken;
 import com.kwrl.models.factories.BallFactory;
 
 public class SpawnPoint extends RectangleToken {
@@ -16,7 +17,7 @@ public class SpawnPoint extends RectangleToken {
 	protected boolean spawning;
 
 	public SpawnPoint(Vector2 position, Vector2 dimensions, BallFactory factory) {
-		super(new Texture("stone.png"), position, dimensions, BodyType.StaticBody);
+		super(new Texture("stone.png"), position, dimensions, BodyType.StaticBody, true);
 		this.factory = factory;
 		
 		startSpawning(5);

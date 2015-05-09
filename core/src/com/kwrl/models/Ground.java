@@ -3,14 +3,15 @@ package com.kwrl.models;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.kwrl.models.abstracts.RectangleToken;
 
 public class Ground extends RectangleToken {
 
 	@Override
 	public void setFixtureValues() {
-		this.friction = 0.01f;
+		this.friction = 1f;
 		this.density = 1f;
-		this.restitution = 0.8f;
+		this.restitution = 1f;
 
 	}
 

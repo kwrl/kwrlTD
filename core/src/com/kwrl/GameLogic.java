@@ -10,8 +10,8 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.kwrl.models.Ball;
-import com.kwrl.models.Token;
 import com.kwrl.models.Weapon;
+import com.kwrl.models.abstracts.Token;
 
 public class GameLogic implements ContactListener {
 	private static GameLogic instance = null;

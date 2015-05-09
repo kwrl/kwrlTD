@@ -2,7 +2,7 @@ package com.kwrl.models.factories;
 
 import com.badlogic.gdx.math.Vector2;
 import com.kwrl.models.Ball;
-import com.kwrl.models.Token;
+import com.kwrl.models.abstracts.Token;
 
 public class BallFactory {
 	protected float radius;
