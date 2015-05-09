@@ -14,11 +14,11 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.kwrl.GameLogic;
 import com.kwrl.KwrlTD;
-import com.kwrl.models.GameObject;
-import com.kwrl.models.Ground;
 import com.kwrl.models.SpawnPoint;
+import com.kwrl.models.Token;
 import com.kwrl.models.Weapon;
 import com.kwrl.models.factories.BallFactory;
+import com.kwrl.models.factories.GroundFactory;
 
 public class GameScreen implements Screen, InputProcessor {
 	private Vector2 touchDown;
@@ -46,7 +46,7 @@ public class GameScreen implements Screen, InputProcessor {
 	@Override
 	public void render(float delta) {
 		World world = GameLogic.getInstance().getWorld();
-		ArrayList<GameObject> gameObjects = GameLogic.getInstance()
+		ArrayList<Token> gameObjects = GameLogic.getInstance()
 				.getGameObjects();
 		float dt = Math.min(delta, 1 / 30f);
 		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -55,7 +55,7 @@ public class GameScreen implements Screen, InputProcessor {
 
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
-		for (GameObject obj : gameObjects) {
+		for (Token obj : gameObjects) {
 			obj.draw(sb, obj.getBody());
 		}
 		sb.end();
@@ -122,7 +122,7 @@ public class GameScreen implements Screen, InputProcessor {
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		new Ground(touchDown, screenPosToWorld(screenX, screenY), 0.1f);
+		GroundFactory.createInstance(touchDown, screenPosToWorld(screenX, screenY), 0.1f);
 		return false;
 	}
 
